@@ -18,11 +18,29 @@ const request = axios.create({
 const cache = new Map()
 const CACHE_TTL = 1000 * 60 * 5
 
+function toNumber(value) {
+  return Number(value || 0)
+}
+
+function toCamelBuilding(item) {
+  if (!item) return item
+  return {
+    ...item,
+    id: toNumber(item.id),
+    floors: toNumber(item.floors),
+    rooms: toNumber(item.rooms),
+    area: toNumber(item.area)
+  }
+}
+
 function toCamelEnergy(item) {
   if (!item) return item
   return {
     ...item,
-    buildingId: item.building_id ?? item.buildingId
+    id: toNumber(item.id),
+    buildingId: toNumber(item.building_id ?? item.buildingId),
+    electricity: toNumber(item.electricity),
+    water: toNumber(item.water)
   }
 }
 
@@ -30,7 +48,8 @@ function toCamelInspection(item) {
   if (!item) return item
   return {
     ...item,
-    buildingId: item.building_id ?? item.buildingId,
+    id: item.id,
+    buildingId: toNumber(item.building_id ?? item.buildingId),
     buildingName: item.building_name ?? item.buildingName,
     createdAt: item.created_at ?? item.createdAt
   }
@@ -62,17 +81,17 @@ async function cachedGet(url, params = {}, mapper = (data) => data) {
 
 export function getBuildings() {
   if (useSupabase) {
-    return cachedGet('/buildings', { select: '*', order: 'id.asc' })
+    return cachedGet('/buildings', { select: '*', order: 'id.asc' }, (data) => data.map(toCamelBuilding))
   }
-  return cachedGet('/buildings')
+  return cachedGet('/buildings', {}, (data) => data.map(toCamelBuilding))
 }
 
 export async function getBuilding(id) {
   if (useSupabase) {
-    const rows = await cachedGet('/buildings', { select: '*', id: `eq.${id}`, limit: 1 })
+    const rows = await cachedGet('/buildings', { select: '*', id: `eq.${id}`, limit: 1 }, (data) => data.map(toCamelBuilding))
     return rows[0]
   }
-  return cachedGet(`/buildings/${id}`)
+  return cachedGet(`/buildings/${id}`, {}, toCamelBuilding)
 }
 
 export function getDailyEnergy(params = {}) {
@@ -89,7 +108,7 @@ export function getDailyEnergy(params = {}) {
     return cachedGet('/daily_energy', query, (data) => data.map(toCamelEnergy))
   }
 
-  return cachedGet('/dailyEnergy', params)
+  return cachedGet('/dailyEnergy', params, (data) => data.map(toCamelEnergy))
 }
 
 export function getMonthlyEnergy(params = {}) {
@@ -106,7 +125,7 @@ export function getMonthlyEnergy(params = {}) {
     return cachedGet('/monthly_energy', query, (data) => data.map(toCamelEnergy))
   }
 
-  return cachedGet('/monthlyEnergy', params)
+  return cachedGet('/monthlyEnergy', params, (data) => data.map(toCamelEnergy))
 }
 
 export function getInspections() {
@@ -114,7 +133,7 @@ export function getInspections() {
     return cachedGet('/inspections', { select: '*', order: 'id.asc' }, (data) => data.map(toCamelInspection))
   }
 
-  return cachedGet('/inspections')
+  return cachedGet('/inspections', {}, (data) => data.map(toCamelInspection))
 }
 
 export async function createInspection(payload) {

@@ -18,10 +18,11 @@ export function statusMeta(status) {
 
 export function mergeBuildingEnergy(buildings, records, mode = 'daily') {
   return buildings.map((building) => {
-    const matched = records.filter((item) => item.buildingId === building.id)
+    const buildingId = Number(building.id)
+    const matched = records.filter((item) => Number(item.buildingId) === buildingId)
     const latest = mode === 'daily' ? matched.at(-1) : matched.find((item) => item.month === '2026-05') || matched.at(-1)
-    const electricity = latest?.electricity || 0
-    const water = latest?.water || 0
+    const electricity = Number(latest?.electricity || 0)
+    const water = Number(latest?.water || 0)
 
     return {
       ...building,

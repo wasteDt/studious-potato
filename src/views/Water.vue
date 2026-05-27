@@ -73,7 +73,7 @@ const pieOption = computed(() => ({
       center: ['38%', '52%'],
       data: buildings.value.map((building) => ({
         name: building.name,
-        value: monthRecords.value.find((item) => item.buildingId === building.id)?.water || 0
+        value: monthRecords.value.find((item) => Number(item.buildingId) === Number(building.id))?.water || 0
       }))
     }
   ]

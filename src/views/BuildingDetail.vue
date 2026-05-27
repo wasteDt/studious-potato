@@ -83,7 +83,7 @@ const dailyOption = computed(() => ({
   tooltip: { trigger: 'axis' },
   legend: { top: 0 },
   grid: { left: 45, right: 24, bottom: 30, top: 42 },
-  xAxis: { type: 'category', data: daily.value.map((item) => item.date.slice(5)) },
+  xAxis: { type: 'category', data: daily.value.map((item) => String(item.date || '').slice(5)) },
   yAxis: { type: 'value' },
   series: [
     { name: '用电量 kWh', type: 'line', smooth: true, data: daily.value.map((item) => item.electricity) },
