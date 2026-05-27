@@ -1,148 +1,165 @@
-# 方案 B：前端静态发布 + 后端 API 单独部署
+# Supabase + Vercel 部署流程
 
-该方案可以实现 build 后通过链接访问，并且 GET/POST 请求走线上 API。
-
-## 一、整体结构
+该项目推荐使用：
 
 ```text
-用户浏览器
-  ↓
-前端静态站点：GitHub Pages / Vercel / Netlify / Nginx
-  ↓
-线上 API：云服务器 / Render / Railway / 其他 Node 平台
+前端：Vercel
+后端数据 API：Supabase
 ```
 
-前端只发布 `dist/` 静态文件，API 单独运行 JSON Server。
+Supabase 会自动提供 REST API，前端通过 `VITE_SUPABASE_URL` 和 `VITE_SUPABASE_ANON_KEY` 请求数据。
 
-## 二、API 部署
+## 一、创建 Supabase 项目
 
-### 方式 1：云服务器
-
-服务器安装 Node.js 和 pnpm 后，上传项目代码，执行：
-
-```bash
-pnpm install
-pnpm api
-```
-
-API 默认监听：
+1. 打开 Supabase：
 
 ```text
-0.0.0.0:3001
+https://supabase.com
 ```
 
-服务器需要放行 3001 端口。访问示例：
+2. 登录后点击：
 
 ```text
-http://服务器IP:3001/buildings
+New project
 ```
 
-如果有域名和反向代理，建议映射为：
+3. 填写项目名称、数据库密码、区域，然后创建项目。
+
+## 二、导入数据库表和数据
+
+进入 Supabase 项目后，打开：
 
 ```text
-https://api.example.com
+SQL Editor -> New query
 ```
 
-### 方式 2：Render / Railway
-
-构建命令：
-
-```bash
-pnpm install
-```
-
-启动命令示例：
-
-```bash
-pnpm exec json-server db.json --host 0.0.0.0 --port 3001
-```
-
-如果平台要求使用动态端口，启动命令改为平台支持的端口变量，例如 Render 常用：
-
-```bash
-pnpm exec json-server db.json --host 0.0.0.0 --port $PORT
-```
-
-部署完成后，记录 API 域名，例如：
+复制本项目中的 SQL 文件内容：
 
 ```text
-https://campus-energy-api.onrender.com
+supabase/schema.sql
 ```
 
-## 三、前端部署
-
-### Vercel / Netlify
-
-构建命令：
-
-```bash
-pnpm build
-```
-
-输出目录：
+粘贴到 Supabase SQL Editor，然后点击：
 
 ```text
-dist
+Run
 ```
 
-环境变量：
+执行成功后，会创建这些表：
 
 ```text
-VITE_API_BASE_URL=https://你的API域名
+buildings
+daily_energy
+monthly_energy
+inspections
+```
+
+并自动插入演示数据。
+
+## 三、获取 Supabase API 配置
+
+打开：
+
+```text
+Project Settings -> API
+```
+
+复制：
+
+```text
+Project URL
+anon public key
+```
+
+示例：
+
+```text
+Project URL: https://abcdefghijk.supabase.co
+anon public key: eyJhbGciOi...
+```
+
+注意：只能使用 `anon public key`，不要把 `service_role` key 填到前端。
+
+## 四、配置 Vercel 前端
+
+打开 Vercel 项目：
+
+```text
+Project -> Settings -> Environment Variables
+```
+
+添加：
+
+```text
+VITE_SUPABASE_URL=https://你的项目.supabase.co
+VITE_SUPABASE_ANON_KEY=你的 anon public key
 VITE_BASE_PATH=/
 ```
 
-### GitHub Pages
-
-如果仓库名是 `campus-energy-dashboard`，线上地址通常是：
+如果之前配置了这个变量，可以清空或删除：
 
 ```text
-https://用户名.github.io/campus-energy-dashboard/
+VITE_API_BASE_URL
 ```
 
-构建前设置：
+本项目优先使用 Supabase 配置；只有没有 Supabase 配置时，才回退到 JSON Server。
+
+## 五、重新部署 Vercel
+
+Vercel 环境变量是在构建阶段写入的，所以修改变量后必须重新部署。
+
+进入：
 
 ```text
-VITE_API_BASE_URL=https://你的API域名
-VITE_BASE_PATH=/campus-energy-dashboard/
+Deployments -> 选择最新部署 -> Redeploy
 ```
 
-然后执行：
+部署完成后，打开 Vercel 项目链接。
+
+## 六、验证是否成功
+
+打开浏览器开发者工具：
+
+```text
+F12 -> Network
+```
+
+刷新页面。正确请求地址应该类似：
+
+```text
+https://你的项目.supabase.co/rest/v1/buildings
+https://你的项目.supabase.co/rest/v1/daily_energy
+https://你的项目.supabase.co/rest/v1/monthly_energy
+https://你的项目.supabase.co/rest/v1/inspections
+```
+
+如果综合分析页提交巡检记录成功，说明 POST 也正常。
+
+## 七、本地开发
+
+本地仍然可以继续使用 JSON Server：
 
 ```bash
-pnpm build
+pnpm api
+pnpm dev
 ```
 
-把 `dist/` 发布到 GitHub Pages。
-
-## 四、上线后验证
-
-前端链接打开后检查：
-
-- 首页统计卡片是否有数据。
-- 折线图、柱状图、饼图是否正常显示。
-- 教学楼详情页是否能打开。
-- 综合分析页提交巡检记录是否成功。
-
-API 链接单独检查：
+本地默认请求：
 
 ```text
-https://你的API域名/buildings
-https://你的API域名/dailyEnergy
-https://你的API域名/inspections
+http://localhost:3001
 ```
 
-POST 验证：
+如果你想本地也连接 Supabase，可以新建 `.env.local`：
+
+```text
+VITE_SUPABASE_URL=https://你的项目.supabase.co
+VITE_SUPABASE_ANON_KEY=你的 anon public key
+VITE_BASE_PATH=/
+```
+
+然后重新运行：
 
 ```bash
-curl -X POST https://你的API域名/inspections \
-  -H "Content-Type: application/json" \
-  -d "{\"buildingId\":1,\"buildingName\":\"第一教学楼\",\"type\":\"综合巡检\",\"content\":\"线上接口测试\",\"createdAt\":\"2026-05-27 15:00\"}"
+pnpm dev
 ```
-
-## 五、注意事项
-
-- JSON Server 适合作业演示和模拟接口，不建议作为正式生产后端。
-- 如果前端是 HTTPS，API 也应使用 HTTPS，否则浏览器可能拦截请求。
-- API 平台需要允许跨域访问。JSON Server 默认会返回 CORS 相关响应头，通常可以直接访问。
-- 免费云平台可能会休眠，第一次打开接口可能较慢。

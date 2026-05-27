@@ -67,18 +67,25 @@ pnpm build
 
 ## 线上部署
 
-本项目支持“前端静态发布 + API 单独部署”的方案。详细步骤见 [DEPLOYMENT.md](./DEPLOYMENT.md)。
+推荐使用 Supabase + Vercel：
 
-前端构建时通过环境变量指定线上 API：
+- Supabase：提供稳定免费的在线 REST API 和数据库。
+- Vercel：发布前端静态页面。
 
-```bash
-VITE_API_BASE_URL=https://your-api-domain.example.com pnpm build
+详细步骤见 [DEPLOYMENT.md](./DEPLOYMENT.md)。
+
+Vercel 需要配置：
+
+```text
+VITE_SUPABASE_URL=https://你的项目.supabase.co
+VITE_SUPABASE_ANON_KEY=你的 anon public key
+VITE_BASE_PATH=/
 ```
 
-如果部署到 GitHub Pages 的仓库子路径，例如 `https://用户名.github.io/仓库名/`，还需要设置：
+数据库建表和初始化数据见：
 
-```bash
-VITE_BASE_PATH=/仓库名/
+```text
+supabase/schema.sql
 ```
 
 ## 浏览器兼容测试方案
