@@ -1,19 +1,13 @@
-import axios from 'axios'
-
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 const useSupabase = Boolean(supabaseUrl && supabaseAnonKey)
-
-const request = axios.create({
-  baseURL: useSupabase ? `${supabaseUrl}/rest/v1` : import.meta.env.VITE_API_BASE_URL || '/api',
-  timeout: 8000,
-  headers: useSupabase
-    ? {
-        apikey: supabaseAnonKey,
-        Authorization: `Bearer ${supabaseAnonKey}`
-      }
-    : {}
-})
+const baseURL = useSupabase ? `${supabaseUrl}/rest/v1` : import.meta.env.VITE_API_BASE_URL || '/api'
+const baseHeaders = useSupabase
+  ? {
+      apikey: supabaseAnonKey,
+      Authorization: `Bearer ${supabaseAnonKey}`
+    }
+  : {}
 
 const cache = new Map()
 const CACHE_TTL = 1000 * 60 * 5
@@ -73,10 +67,37 @@ async function cachedGet(url, params = {}, mapper = (data) => data) {
     return cached.data
   }
 
-  const { data } = await request.get(url, { params })
+  const data = await requestJson(url, { params })
   const mapped = mapper(data)
   cache.set(key, { data: mapped, time: Date.now() })
   return mapped
+}
+
+async function requestJson(url, options = {}) {
+  const controller = new AbortController()
+  const timeout = window.setTimeout(() => controller.abort(), 8000)
+  const query = options.params ? `?${new URLSearchParams(options.params)}` : ''
+
+  try {
+    const response = await fetch(`${baseURL}${url}${query}`, {
+      method: options.method || 'GET',
+      headers: {
+        ...baseHeaders,
+        ...(options.body ? { 'Content-Type': 'application/json' } : {}),
+        ...options.headers
+      },
+      body: options.body ? JSON.stringify(options.body) : undefined,
+      signal: controller.signal
+    })
+
+    if (!response.ok) {
+      throw new Error(`Request failed: ${response.status}`)
+    }
+
+    return response.json()
+  } finally {
+    window.clearTimeout(timeout)
+  }
 }
 
 export function getBuildings() {
@@ -138,14 +159,19 @@ export function getInspections() {
 
 export async function createInspection(payload) {
   if (useSupabase) {
-    const { data } = await request.post('/inspections', toSupabaseInspection(payload), {
+    const data = await requestJson('/inspections', {
+      method: 'POST',
+      body: toSupabaseInspection(payload),
       headers: { Prefer: 'return=representation' }
     })
     cache.clear()
     return toCamelInspection(data[0])
   }
 
-  const { data } = await request.post('/inspections', payload)
+  const data = await requestJson('/inspections', {
+    method: 'POST',
+    body: payload
+  })
   cache.delete('/inspections:{}')
   return data
 }

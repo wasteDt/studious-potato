@@ -1,97 +1,613 @@
 {
   "buildings": [
-    { "id": 1, "name": "第一教学楼", "code": "A1", "floors": 6, "rooms": 48, "area": 12800, "status": "normal" },
-    { "id": 2, "name": "第二教学楼", "code": "A2", "floors": 5, "rooms": 42, "area": 11200, "status": "warning" },
-    { "id": 3, "name": "实验实训楼", "code": "B1", "floors": 8, "rooms": 64, "area": 18600, "status": "high" },
-    { "id": 4, "name": "信息工程楼", "code": "C1", "floors": 7, "rooms": 56, "area": 15200, "status": "normal" },
-    { "id": 5, "name": "艺术教学楼", "code": "D1", "floors": 4, "rooms": 32, "area": 8600, "status": "normal" },
-    { "id": 6, "name": "公共教学楼", "code": "E1", "floors": 6, "rooms": 52, "area": 13400, "status": "warning" }
+    {
+      "id": "1",
+      "name": "第一教学楼",
+      "code": "A1",
+      "floors": 6,
+      "rooms": 48,
+      "area": 12800,
+      "status": "normal"
+    },
+    {
+      "id": "2",
+      "name": "第二教学楼",
+      "code": "A2",
+      "floors": 5,
+      "rooms": 42,
+      "area": 11200,
+      "status": "warning"
+    },
+    {
+      "id": "3",
+      "name": "实验实训楼",
+      "code": "B1",
+      "floors": 8,
+      "rooms": 64,
+      "area": 18600,
+      "status": "high"
+    },
+    {
+      "id": "4",
+      "name": "信息工程楼",
+      "code": "C1",
+      "floors": 7,
+      "rooms": 56,
+      "area": 15200,
+      "status": "normal"
+    },
+    {
+      "id": "5",
+      "name": "艺术教学楼",
+      "code": "D1",
+      "floors": 4,
+      "rooms": 32,
+      "area": 8600,
+      "status": "normal"
+    },
+    {
+      "id": "6",
+      "name": "公共教学楼",
+      "code": "E1",
+      "floors": 6,
+      "rooms": 52,
+      "area": 13400,
+      "status": "warning"
+    }
   ],
   "dailyEnergy": [
-    { "id": 1, "buildingId": 1, "date": "2026-05-21", "electricity": 1260, "water": 92 },
-    { "id": 2, "buildingId": 1, "date": "2026-05-22", "electricity": 1315, "water": 96 },
-    { "id": 3, "buildingId": 1, "date": "2026-05-23", "electricity": 1248, "water": 89 },
-    { "id": 4, "buildingId": 1, "date": "2026-05-24", "electricity": 1186, "water": 84 },
-    { "id": 5, "buildingId": 1, "date": "2026-05-25", "electricity": 1360, "water": 101 },
-    { "id": 6, "buildingId": 1, "date": "2026-05-26", "electricity": 1398, "water": 104 },
-    { "id": 7, "buildingId": 1, "date": "2026-05-27", "electricity": 1420, "water": 108 },
-    { "id": 8, "buildingId": 2, "date": "2026-05-21", "electricity": 1510, "water": 112 },
-    { "id": 9, "buildingId": 2, "date": "2026-05-22", "electricity": 1588, "water": 118 },
-    { "id": 10, "buildingId": 2, "date": "2026-05-23", "electricity": 1624, "water": 121 },
-    { "id": 11, "buildingId": 2, "date": "2026-05-24", "electricity": 1496, "water": 109 },
-    { "id": 12, "buildingId": 2, "date": "2026-05-25", "electricity": 1712, "water": 126 },
-    { "id": 13, "buildingId": 2, "date": "2026-05-26", "electricity": 1765, "water": 132 },
-    { "id": 14, "buildingId": 2, "date": "2026-05-27", "electricity": 1818, "water": 137 },
-    { "id": 15, "buildingId": 3, "date": "2026-05-21", "electricity": 2380, "water": 162 },
-    { "id": 16, "buildingId": 3, "date": "2026-05-22", "electricity": 2495, "water": 171 },
-    { "id": 17, "buildingId": 3, "date": "2026-05-23", "electricity": 2530, "water": 176 },
-    { "id": 18, "buildingId": 3, "date": "2026-05-24", "electricity": 2268, "water": 151 },
-    { "id": 19, "buildingId": 3, "date": "2026-05-25", "electricity": 2642, "water": 185 },
-    { "id": 20, "buildingId": 3, "date": "2026-05-26", "electricity": 2716, "water": 193 },
-    { "id": 21, "buildingId": 3, "date": "2026-05-27", "electricity": 2860, "water": 205 },
-    { "id": 22, "buildingId": 4, "date": "2026-05-21", "electricity": 1720, "water": 104 },
-    { "id": 23, "buildingId": 4, "date": "2026-05-22", "electricity": 1685, "water": 101 },
-    { "id": 24, "buildingId": 4, "date": "2026-05-23", "electricity": 1774, "water": 108 },
-    { "id": 25, "buildingId": 4, "date": "2026-05-24", "electricity": 1532, "water": 94 },
-    { "id": 26, "buildingId": 4, "date": "2026-05-25", "electricity": 1816, "water": 112 },
-    { "id": 27, "buildingId": 4, "date": "2026-05-26", "electricity": 1840, "water": 116 },
-    { "id": 28, "buildingId": 4, "date": "2026-05-27", "electricity": 1875, "water": 119 },
-    { "id": 29, "buildingId": 5, "date": "2026-05-21", "electricity": 820, "water": 72 },
-    { "id": 30, "buildingId": 5, "date": "2026-05-22", "electricity": 846, "water": 74 },
-    { "id": 31, "buildingId": 5, "date": "2026-05-23", "electricity": 802, "water": 69 },
-    { "id": 32, "buildingId": 5, "date": "2026-05-24", "electricity": 766, "water": 64 },
-    { "id": 33, "buildingId": 5, "date": "2026-05-25", "electricity": 884, "water": 78 },
-    { "id": 34, "buildingId": 5, "date": "2026-05-26", "electricity": 902, "water": 81 },
-    { "id": 35, "buildingId": 5, "date": "2026-05-27", "electricity": 930, "water": 83 },
-    { "id": 36, "buildingId": 6, "date": "2026-05-21", "electricity": 1450, "water": 126 },
-    { "id": 37, "buildingId": 6, "date": "2026-05-22", "electricity": 1492, "water": 130 },
-    { "id": 38, "buildingId": 6, "date": "2026-05-23", "electricity": 1548, "water": 134 },
-    { "id": 39, "buildingId": 6, "date": "2026-05-24", "electricity": 1380, "water": 118 },
-    { "id": 40, "buildingId": 6, "date": "2026-05-25", "electricity": 1630, "water": 142 },
-    { "id": 41, "buildingId": 6, "date": "2026-05-26", "electricity": 1688, "water": 148 },
-    { "id": 42, "buildingId": 6, "date": "2026-05-27", "electricity": 1742, "water": 153 }
+    {
+      "id": "1",
+      "buildingId": 1,
+      "date": "2026-05-21",
+      "electricity": 1260,
+      "water": 92
+    },
+    {
+      "id": "2",
+      "buildingId": 1,
+      "date": "2026-05-22",
+      "electricity": 1315,
+      "water": 96
+    },
+    {
+      "id": "3",
+      "buildingId": 1,
+      "date": "2026-05-23",
+      "electricity": 1248,
+      "water": 89
+    },
+    {
+      "id": "4",
+      "buildingId": 1,
+      "date": "2026-05-24",
+      "electricity": 1186,
+      "water": 84
+    },
+    {
+      "id": "5",
+      "buildingId": 1,
+      "date": "2026-05-25",
+      "electricity": 1360,
+      "water": 101
+    },
+    {
+      "id": "6",
+      "buildingId": 1,
+      "date": "2026-05-26",
+      "electricity": 1398,
+      "water": 104
+    },
+    {
+      "id": "7",
+      "buildingId": 1,
+      "date": "2026-05-27",
+      "electricity": 1420,
+      "water": 108
+    },
+    {
+      "id": "8",
+      "buildingId": 2,
+      "date": "2026-05-21",
+      "electricity": 1510,
+      "water": 112
+    },
+    {
+      "id": "9",
+      "buildingId": 2,
+      "date": "2026-05-22",
+      "electricity": 1588,
+      "water": 118
+    },
+    {
+      "id": "10",
+      "buildingId": 2,
+      "date": "2026-05-23",
+      "electricity": 1624,
+      "water": 121
+    },
+    {
+      "id": "11",
+      "buildingId": 2,
+      "date": "2026-05-24",
+      "electricity": 1496,
+      "water": 109
+    },
+    {
+      "id": "12",
+      "buildingId": 2,
+      "date": "2026-05-25",
+      "electricity": 1712,
+      "water": 126
+    },
+    {
+      "id": "13",
+      "buildingId": 2,
+      "date": "2026-05-26",
+      "electricity": 1765,
+      "water": 132
+    },
+    {
+      "id": "14",
+      "buildingId": 2,
+      "date": "2026-05-27",
+      "electricity": 1818,
+      "water": 137
+    },
+    {
+      "id": "15",
+      "buildingId": 3,
+      "date": "2026-05-21",
+      "electricity": 2380,
+      "water": 162
+    },
+    {
+      "id": "16",
+      "buildingId": 3,
+      "date": "2026-05-22",
+      "electricity": 2495,
+      "water": 171
+    },
+    {
+      "id": "17",
+      "buildingId": 3,
+      "date": "2026-05-23",
+      "electricity": 2530,
+      "water": 176
+    },
+    {
+      "id": "18",
+      "buildingId": 3,
+      "date": "2026-05-24",
+      "electricity": 2268,
+      "water": 151
+    },
+    {
+      "id": "19",
+      "buildingId": 3,
+      "date": "2026-05-25",
+      "electricity": 2642,
+      "water": 185
+    },
+    {
+      "id": "20",
+      "buildingId": 3,
+      "date": "2026-05-26",
+      "electricity": 2716,
+      "water": 193
+    },
+    {
+      "id": "21",
+      "buildingId": 3,
+      "date": "2026-05-27",
+      "electricity": 2860,
+      "water": 205
+    },
+    {
+      "id": "22",
+      "buildingId": 4,
+      "date": "2026-05-21",
+      "electricity": 1720,
+      "water": 104
+    },
+    {
+      "id": "23",
+      "buildingId": 4,
+      "date": "2026-05-22",
+      "electricity": 1685,
+      "water": 101
+    },
+    {
+      "id": "24",
+      "buildingId": 4,
+      "date": "2026-05-23",
+      "electricity": 1774,
+      "water": 108
+    },
+    {
+      "id": "25",
+      "buildingId": 4,
+      "date": "2026-05-24",
+      "electricity": 1532,
+      "water": 94
+    },
+    {
+      "id": "26",
+      "buildingId": 4,
+      "date": "2026-05-25",
+      "electricity": 1816,
+      "water": 112
+    },
+    {
+      "id": "27",
+      "buildingId": 4,
+      "date": "2026-05-26",
+      "electricity": 1840,
+      "water": 116
+    },
+    {
+      "id": "28",
+      "buildingId": 4,
+      "date": "2026-05-27",
+      "electricity": 1875,
+      "water": 119
+    },
+    {
+      "id": "29",
+      "buildingId": 5,
+      "date": "2026-05-21",
+      "electricity": 820,
+      "water": 72
+    },
+    {
+      "id": "30",
+      "buildingId": 5,
+      "date": "2026-05-22",
+      "electricity": 846,
+      "water": 74
+    },
+    {
+      "id": "31",
+      "buildingId": 5,
+      "date": "2026-05-23",
+      "electricity": 802,
+      "water": 69
+    },
+    {
+      "id": "32",
+      "buildingId": 5,
+      "date": "2026-05-24",
+      "electricity": 766,
+      "water": 64
+    },
+    {
+      "id": "33",
+      "buildingId": 5,
+      "date": "2026-05-25",
+      "electricity": 884,
+      "water": 78
+    },
+    {
+      "id": "34",
+      "buildingId": 5,
+      "date": "2026-05-26",
+      "electricity": 902,
+      "water": 81
+    },
+    {
+      "id": "35",
+      "buildingId": 5,
+      "date": "2026-05-27",
+      "electricity": 930,
+      "water": 83
+    },
+    {
+      "id": "36",
+      "buildingId": 6,
+      "date": "2026-05-21",
+      "electricity": 1450,
+      "water": 126
+    },
+    {
+      "id": "37",
+      "buildingId": 6,
+      "date": "2026-05-22",
+      "electricity": 1492,
+      "water": 130
+    },
+    {
+      "id": "38",
+      "buildingId": 6,
+      "date": "2026-05-23",
+      "electricity": 1548,
+      "water": 134
+    },
+    {
+      "id": "39",
+      "buildingId": 6,
+      "date": "2026-05-24",
+      "electricity": 1380,
+      "water": 118
+    },
+    {
+      "id": "40",
+      "buildingId": 6,
+      "date": "2026-05-25",
+      "electricity": 1630,
+      "water": 142
+    },
+    {
+      "id": "41",
+      "buildingId": 6,
+      "date": "2026-05-26",
+      "electricity": 1688,
+      "water": 148
+    },
+    {
+      "id": "42",
+      "buildingId": 6,
+      "date": "2026-05-27",
+      "electricity": 1742,
+      "water": 153
+    }
   ],
   "monthlyEnergy": [
-    { "id": 1, "buildingId": 1, "month": "2025-12", "electricity": 32800, "water": 2180 },
-    { "id": 2, "buildingId": 1, "month": "2026-01", "electricity": 28600, "water": 1960 },
-    { "id": 3, "buildingId": 1, "month": "2026-02", "electricity": 24100, "water": 1680 },
-    { "id": 4, "buildingId": 1, "month": "2026-03", "electricity": 35400, "water": 2380 },
-    { "id": 5, "buildingId": 1, "month": "2026-04", "electricity": 37200, "water": 2510 },
-    { "id": 6, "buildingId": 1, "month": "2026-05", "electricity": 38600, "water": 2640 },
-    { "id": 7, "buildingId": 2, "month": "2025-12", "electricity": 38600, "water": 2460 },
-    { "id": 8, "buildingId": 2, "month": "2026-01", "electricity": 34200, "water": 2260 },
-    { "id": 9, "buildingId": 2, "month": "2026-02", "electricity": 29800, "water": 2050 },
-    { "id": 10, "buildingId": 2, "month": "2026-03", "electricity": 42100, "water": 2710 },
-    { "id": 11, "buildingId": 2, "month": "2026-04", "electricity": 45800, "water": 2960 },
-    { "id": 12, "buildingId": 2, "month": "2026-05", "electricity": 48600, "water": 3180 },
-    { "id": 13, "buildingId": 3, "month": "2025-12", "electricity": 61200, "water": 3840 },
-    { "id": 14, "buildingId": 3, "month": "2026-01", "electricity": 54800, "water": 3520 },
-    { "id": 15, "buildingId": 3, "month": "2026-02", "electricity": 47600, "water": 3180 },
-    { "id": 16, "buildingId": 3, "month": "2026-03", "electricity": 64200, "water": 4210 },
-    { "id": 17, "buildingId": 3, "month": "2026-04", "electricity": 69400, "water": 4560 },
-    { "id": 18, "buildingId": 3, "month": "2026-05", "electricity": 74200, "water": 4920 },
-    { "id": 19, "buildingId": 4, "month": "2025-12", "electricity": 43500, "water": 2510 },
-    { "id": 20, "buildingId": 4, "month": "2026-01", "electricity": 39800, "water": 2310 },
-    { "id": 21, "buildingId": 4, "month": "2026-02", "electricity": 33200, "water": 2040 },
-    { "id": 22, "buildingId": 4, "month": "2026-03", "electricity": 46200, "water": 2660 },
-    { "id": 23, "buildingId": 4, "month": "2026-04", "electricity": 48700, "water": 2820 },
-    { "id": 24, "buildingId": 4, "month": "2026-05", "electricity": 50900, "water": 2960 },
-    { "id": 25, "buildingId": 5, "month": "2025-12", "electricity": 21800, "water": 1720 },
-    { "id": 26, "buildingId": 5, "month": "2026-01", "electricity": 19600, "water": 1540 },
-    { "id": 27, "buildingId": 5, "month": "2026-02", "electricity": 16200, "water": 1280 },
-    { "id": 28, "buildingId": 5, "month": "2026-03", "electricity": 23400, "water": 1860 },
-    { "id": 29, "buildingId": 5, "month": "2026-04", "electricity": 25100, "water": 1980 },
-    { "id": 30, "buildingId": 5, "month": "2026-05", "electricity": 26300, "water": 2090 },
-    { "id": 31, "buildingId": 6, "month": "2025-12", "electricity": 36500, "water": 2840 },
-    { "id": 32, "buildingId": 6, "month": "2026-01", "electricity": 31800, "water": 2510 },
-    { "id": 33, "buildingId": 6, "month": "2026-02", "electricity": 28200, "water": 2260 },
-    { "id": 34, "buildingId": 6, "month": "2026-03", "electricity": 39800, "water": 3140 },
-    { "id": 35, "buildingId": 6, "month": "2026-04", "electricity": 43200, "water": 3460 },
-    { "id": 36, "buildingId": 6, "month": "2026-05", "electricity": 46100, "water": 3720 }
+    {
+      "id": "1",
+      "buildingId": 1,
+      "month": "2025-12",
+      "electricity": 32800,
+      "water": 2180
+    },
+    {
+      "id": "2",
+      "buildingId": 1,
+      "month": "2026-01",
+      "electricity": 28600,
+      "water": 1960
+    },
+    {
+      "id": "3",
+      "buildingId": 1,
+      "month": "2026-02",
+      "electricity": 24100,
+      "water": 1680
+    },
+    {
+      "id": "4",
+      "buildingId": 1,
+      "month": "2026-03",
+      "electricity": 35400,
+      "water": 2380
+    },
+    {
+      "id": "5",
+      "buildingId": 1,
+      "month": "2026-04",
+      "electricity": 37200,
+      "water": 2510
+    },
+    {
+      "id": "6",
+      "buildingId": 1,
+      "month": "2026-05",
+      "electricity": 38600,
+      "water": 2640
+    },
+    {
+      "id": "7",
+      "buildingId": 2,
+      "month": "2025-12",
+      "electricity": 38600,
+      "water": 2460
+    },
+    {
+      "id": "8",
+      "buildingId": 2,
+      "month": "2026-01",
+      "electricity": 34200,
+      "water": 2260
+    },
+    {
+      "id": "9",
+      "buildingId": 2,
+      "month": "2026-02",
+      "electricity": 29800,
+      "water": 2050
+    },
+    {
+      "id": "10",
+      "buildingId": 2,
+      "month": "2026-03",
+      "electricity": 42100,
+      "water": 2710
+    },
+    {
+      "id": "11",
+      "buildingId": 2,
+      "month": "2026-04",
+      "electricity": 45800,
+      "water": 2960
+    },
+    {
+      "id": "12",
+      "buildingId": 2,
+      "month": "2026-05",
+      "electricity": 48600,
+      "water": 3180
+    },
+    {
+      "id": "13",
+      "buildingId": 3,
+      "month": "2025-12",
+      "electricity": 61200,
+      "water": 3840
+    },
+    {
+      "id": "14",
+      "buildingId": 3,
+      "month": "2026-01",
+      "electricity": 54800,
+      "water": 3520
+    },
+    {
+      "id": "15",
+      "buildingId": 3,
+      "month": "2026-02",
+      "electricity": 47600,
+      "water": 3180
+    },
+    {
+      "id": "16",
+      "buildingId": 3,
+      "month": "2026-03",
+      "electricity": 64200,
+      "water": 4210
+    },
+    {
+      "id": "17",
+      "buildingId": 3,
+      "month": "2026-04",
+      "electricity": 69400,
+      "water": 4560
+    },
+    {
+      "id": "18",
+      "buildingId": 3,
+      "month": "2026-05",
+      "electricity": 74200,
+      "water": 4920
+    },
+    {
+      "id": "19",
+      "buildingId": 4,
+      "month": "2025-12",
+      "electricity": 43500,
+      "water": 2510
+    },
+    {
+      "id": "20",
+      "buildingId": 4,
+      "month": "2026-01",
+      "electricity": 39800,
+      "water": 2310
+    },
+    {
+      "id": "21",
+      "buildingId": 4,
+      "month": "2026-02",
+      "electricity": 33200,
+      "water": 2040
+    },
+    {
+      "id": "22",
+      "buildingId": 4,
+      "month": "2026-03",
+      "electricity": 46200,
+      "water": 2660
+    },
+    {
+      "id": "23",
+      "buildingId": 4,
+      "month": "2026-04",
+      "electricity": 48700,
+      "water": 2820
+    },
+    {
+      "id": "24",
+      "buildingId": 4,
+      "month": "2026-05",
+      "electricity": 50900,
+      "water": 2960
+    },
+    {
+      "id": "25",
+      "buildingId": 5,
+      "month": "2025-12",
+      "electricity": 21800,
+      "water": 1720
+    },
+    {
+      "id": "26",
+      "buildingId": 5,
+      "month": "2026-01",
+      "electricity": 19600,
+      "water": 1540
+    },
+    {
+      "id": "27",
+      "buildingId": 5,
+      "month": "2026-02",
+      "electricity": 16200,
+      "water": 1280
+    },
+    {
+      "id": "28",
+      "buildingId": 5,
+      "month": "2026-03",
+      "electricity": 23400,
+      "water": 1860
+    },
+    {
+      "id": "29",
+      "buildingId": 5,
+      "month": "2026-04",
+      "electricity": 25100,
+      "water": 1980
+    },
+    {
+      "id": "30",
+      "buildingId": 5,
+      "month": "2026-05",
+      "electricity": 26300,
+      "water": 2090
+    },
+    {
+      "id": "31",
+      "buildingId": 6,
+      "month": "2025-12",
+      "electricity": 36500,
+      "water": 2840
+    },
+    {
+      "id": "32",
+      "buildingId": 6,
+      "month": "2026-01",
+      "electricity": 31800,
+      "water": 2510
+    },
+    {
+      "id": "33",
+      "buildingId": 6,
+      "month": "2026-02",
+      "electricity": 28200,
+      "water": 2260
+    },
+    {
+      "id": "34",
+      "buildingId": 6,
+      "month": "2026-03",
+      "electricity": 39800,
+      "water": 3140
+    },
+    {
+      "id": "35",
+      "buildingId": 6,
+      "month": "2026-04",
+      "electricity": 43200,
+      "water": 3460
+    },
+    {
+      "id": "36",
+      "buildingId": 6,
+      "month": "2026-05",
+      "electricity": 46100,
+      "water": 3720
+    }
   ],
   "inspections": [
     {
-      "id": 1,
+      "id": "1",
       "buildingId": 3,
       "buildingName": "实验实训楼",
       "type": "用电巡检",
@@ -99,12 +615,29 @@
       "createdAt": "2026-05-27 09:30"
     },
     {
-      "id": 2,
+      "id": "2",
       "buildingId": 6,
       "buildingName": "公共教学楼",
       "type": "用水巡检",
       "content": "排查卫生间水龙头和管道接口是否漏水。",
       "createdAt": "2026-05-27 10:15"
+    },
+    {
+      "buildingId": 1,
+      "buildingName": "第一教学楼",
+      "type": "用电巡检",
+      "content": "1",
+      "createdAt": "2026/5/28 22:02:28",
+      "id": "fuYh9k6RkA4"
+    },
+    {
+      "buildingId": 1,
+      "buildingName": "第一教学楼",
+      "type": "用电巡检",
+      "content": "2",
+      "createdAt": "2026/5/28 22:06:15",
+      "id": "5EHxtlQrlUk"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
